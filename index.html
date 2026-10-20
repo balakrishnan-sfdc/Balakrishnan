@@ -1,20 +1,310 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Bala | Salesforce Developer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Balakrishnan N | Salesforce Developer</title>
+<meta name="description" content="Portfolio of Balakrishnan N, Salesforce Developer with 3+ years of experience in Apex, LWC, Flows and integrations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brand:#0176D3; --brand-dark:#014486; --navy:#032D60; --sky:#1B96FF;
+  --bg:#F3F3F3; --card:#fff; --line:#E5E5E5; --line-strong:#C9C9C9;
+  --text:#181818; --muted:#5C5C5C; --ok:#2E844A; --warn:#FE9339; --purple:#9050E9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--sky);outline-offset:2px;border-radius:4px}
+
+/* Global header */
+.gh{background:linear-gradient(90deg,var(--navy),var(--brand-dark));color:#fff;position:sticky;top:0;z-index:10}
+.gh-in{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:20px;padding:10px 20px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;color:#fff}
+.logo:hover{text-decoration:none}
+.logo svg{width:38px;height:26px}
+.gh nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+.gh nav a{color:#fff;padding:6px 12px;border-radius:4px;font-weight:500;font-size:13px;opacity:.9}
+.gh nav a:hover{background:rgba(255,255,255,.14);text-decoration:none;opacity:1}
+
+main{max-width:1200px;margin:0 auto;padding:20px}
+
+/* Highlights panel */
+.hl{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px 20px;border-top:3px solid var(--brand)}
+.hl-top{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.avatar{width:58px;height:58px;border-radius:6px;background:var(--purple);color:#fff;display:grid;place-items:center;font-weight:700;font-size:22px;flex:none}
+.hl-type{font-size:12px;color:var(--muted)}
+.hl h1{font-size:24px;line-height:1.2;font-weight:700}
+.hl-actions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-block;padding:7px 14px;border-radius:4px;border:1px solid var(--line-strong);background:#fff;color:var(--brand);font-weight:600;font-size:13px}
+.btn:hover{background:#F3F3F3;text-decoration:none}
+.btn.pri{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn.pri:hover{background:var(--brand-dark)}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px 24px;margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
+.f dt{font-size:12px;color:var(--muted)}
+.f dd{font-weight:500;overflow-wrap:anywhere}
+
+/* Path */
+.path{display:flex;margin:16px 0;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px;gap:4px}
+.step{flex:1;position:relative;padding:10px 22px;background:#ECEBEA;text-align:center;font-weight:600;font-size:13px;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 50%,calc(100% - 14px) 100%,0 100%,14px 50%)}
+.step:first-child{clip-path:polygon(0 0,calc(100% - 14px) 0,100% 50%,calc(100% - 14px) 100%,0 100%);border-radius:16px 0 0 16px}
+.step:last-child{clip-path:polygon(0 0,100% 0,100% 100%,0 100%,14px 50%);border-radius:0 16px 16px 0}
+.step small{display:block;font-weight:400;font-size:12px}
+.step.done{background:var(--ok);color:#fff}
+.step.cur{background:var(--brand);color:#fff}
+
+/* Layout */
+.grid{display:grid;grid-template-columns:1fr 340px;gap:16px;align-items:start}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;margin-bottom:16px;overflow:hidden}
+.card-h{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line);font-weight:700;font-size:15px}
+.ico{width:26px;height:26px;border-radius:4px;display:grid;place-items:center;color:#fff;font-size:13px;font-weight:700;flex:none}
+.card-b{padding:16px}
+
+/* Tabs */
+.tabs{display:flex;border-bottom:1px solid var(--line);padding:0 8px;overflow-x:auto;background:#fff}
+.tabs button{background:none;border:0;padding:12px 14px;font:600 13px Inter,sans-serif;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+.tabs button:hover{color:var(--brand)}
+.tabs button[aria-selected=true]{color:var(--brand);border-bottom-color:var(--brand)}
+.panel[hidden]{display:none}
+
+/* Experience */
+.job{padding-left:18px;border-left:2px solid var(--line-strong);margin-left:6px;position:relative;padding-bottom:6px}
+.job+.job{margin-top:22px}
+.job::before{content:"";position:absolute;left:-7px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--brand);border:2px solid #fff;box-shadow:0 0 0 1px var(--brand)}
+.job.past::before{background:var(--ok);box-shadow:0 0 0 1px var(--ok)}
+.job h3{font-size:16px}
+.job .meta{color:var(--muted);font-size:13px;margin-bottom:8px}
+.job ul{padding-left:18px}
+.job li{margin-bottom:6px}
+.badge{display:inline-block;padding:1px 8px;border-radius:10px;font-size:12px;font-weight:600;background:#E3F3FF;color:var(--brand-dark);margin-left:6px;vertical-align:middle}
+.badge.ok{background:#EBF7E6;color:#194E31}
+
+/* Skills */
+.sk+.sk{margin-top:18px}
+.sk h3{font-size:13px;color:var(--muted);font-weight:600;margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:4px 12px;border:1px solid var(--line-strong);border-radius:14px;background:#fff;font-weight:500;font-size:13px}
+.chip.a{background:#E3F3FF;border-color:#A8D8FF;color:var(--brand-dark)}
+.chip.b{background:#F3E8FF;border-color:#D6B8FA;color:#4B2A8A}
+.chip.c{background:#E6F6EC;border-color:#A6DDB7;color:#194E31}
+
+/* Certs */
+.certs{display:grid;gap:12px}
+.cert{display:flex;gap:14px;align-items:center;padding:12px 14px;border:1px solid var(--line);border-radius:8px}
+.seal{width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--sky),var(--brand-dark));color:#fff;display:grid;place-items:center;flex:none}
+.seal svg{width:22px;height:22px}
+.cert b{display:block}
+.cert span{color:var(--muted);font-size:13px}
+
+/* Sidebar */
+.contact li{list-style:none;display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere}
+.contact li:last-child{border:0}
+.contact small{display:block;color:var(--muted);font-size:12px}
+.code{background:#1B2A3B;color:#D9E4F0;font:400 12.5px/1.65 "JetBrains Mono",Consolas,monospace;padding:14px 16px;overflow-x:auto;white-space:pre}
+.code .k{color:#6CB6FF}.code .t{color:#7EE0A8}.code .s{color:#F0B27A}.code .c{color:#8A9BAE}
+.code-bar{background:#0F1A27;color:#8A9BAE;font:12px "JetBrains Mono",monospace;padding:7px 16px}
+
+footer{text-align:center;color:var(--muted);font-size:12px;padding:8px 0 28px}
+
+@media (max-width:900px){
+  .grid{grid-template-columns:1fr}
+  .gh nav{display:none}
+  .hl-actions{margin-left:0;width:100%}
+  .path{flex-direction:column}
+  .step,.step:first-child,.step:last-child{clip-path:none;border-radius:6px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
 </head>
 <body>
-  <h1>Bala</h1>
-  <p>Salesforce Developer | Apex, LWC, Integrations</p>
-  <h2>Certifications</h2>
-  <ul>
-    <li>Salesforce Administrator</li>
-    <li>Platform Developer 1</li>
-    <li>Platform App Builder</li>
-  </ul>
-  <h2>Links</h2>
-  <a href="https://trailblazer.me/id/yourid">Trailblazer</a> |
-  <a href="https://linkedin.com/in/yourid">LinkedIn</a>
+
+<header class="gh">
+  <div class="gh-in">
+    <a class="logo" href="#top" aria-label="Balakrishnan N, home">
+      <svg viewBox="0 0 38 26" aria-hidden="true"><g fill="#fff"><circle cx="11" cy="15" r="8"/><circle cx="20" cy="10" r="9"/><circle cx="29" cy="15" r="8"/><rect x="11" y="15" width="18" height="8"/></g></svg>
+      Balakrishnan N
+    </a>
+    <nav aria-label="Sections">
+      <a href="#details">Details</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#certs">Certifications</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Highlights panel -->
+  <section class="hl" aria-label="Profile summary">
+    <div class="hl-top">
+      <div class="avatar" aria-hidden="true">BN</div>
+      <div>
+        <div class="hl-type">Salesforce Developer</div>
+        <h1>Balakrishnan N</h1>
+      </div>
+      <div class="hl-actions">
+        <a class="btn pri" href="mailto:baluvasu18@gmail.com">Send email</a>
+        <a class="btn" href="https://www.linkedin.com/in/balakrishnann07" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://trailblazer.me/id/krish7" target="_blank" rel="noopener">Trailblazer</a>
+        <a class="btn" href="https://github.com/balakrishnan-sfdc" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <dl class="fields">
+      <div class="f"><dt>Title</dt><dd>Salesforce Developer</dd></div>
+      <div class="f"><dt>Company</dt><dd>MaxVal</dd></div>
+      <div class="f"><dt>Experience</dt><dd>4+ years</dd></div>
+      <div class="f"><dt>Location</dt><dd>Coimbatore, Tamil Nadu</dd></div>
+      <div class="f"><dt>Certifications</dt><dd>3 Salesforce certifications</dd></div>
+    </dl>
+  </section>
+
+  <!-- Path -->
+  <div class="path" role="list" aria-label="Career path">
+    <div class="step done" role="listitem">Software Engineer<small>HCLTech · Jan 2022 – Sep 2023</small></div>
+    <div class="step cur" role="listitem">Salesforce Developer<small>MaxVal · Jul 2024 – Present</small></div>
+  </div>
+
+  <div class="grid">
+    <div>
+
+      <!-- Summary -->
+      <section class="card" id="details">
+        <div class="card-h"><span class="ico" style="background:var(--brand)">i</span>About</div>
+        <div class="card-b">
+          <p>Salesforce Developer with 3+ years of experience building custom Salesforce applications that meet business requirements. I write bulk-safe Apex, build Lightning Web Components and Flows, and integrate Salesforce with external systems. I pay close attention to detail and deliver quality solutions on time.</p>
+        </div>
+      </section>
+
+      <!-- Tabs -->
+      <section class="card" id="experience">
+        <div class="tabs" role="tablist" aria-label="Portfolio sections">
+          <button role="tab" id="t1" aria-selected="true" aria-controls="p1">Experience</button>
+          <button role="tab" id="t2" aria-selected="false" aria-controls="p2" tabindex="-1">Skills</button>
+          <button role="tab" id="t3" aria-selected="false" aria-controls="p3" tabindex="-1">Education</button>
+        </div>
+
+        <div class="card-b panel" id="p1" role="tabpanel" aria-labelledby="t1">
+          <div class="job">
+            <h3>Salesforce Developer <span class="badge">Current</span></h3>
+            <div class="meta">MaxVal · Jul 2024 – Present</div>
+            <ul>
+              <li>Developed and enhanced Apex classes and triggers using bulk handling and governor limit best practices across client projects.</li>
+              <li>Refactored existing Apex code to improve performance, readability and maintainability, reducing technical debt.</li>
+              <li>Implemented asynchronous Apex (Future, Queueable, Batch) for long-running processes.</li>
+              <li>Built Lightning Web Components and automated processes with Record-Triggered Flows and Screen Flows.</li>
+              <li>Wrote Apex test classes for required code coverage and supported deployments through Git and pull request workflows.</li>
+              <li>Used AWS CloudWatch to analyse data quality.</li>
+              <li>Worked with S-Docs templates for document generation and supported production issues to keep downtime minimal.</li>
+            </ul>
+          </div>
+          <div class="job past">
+            <h3>Software Engineer <span class="badge ok">Completed</span></h3>
+            <div class="meta">HCLTech · Jan 2022 – Sep 2023</div>
+            <ul>
+              <li>Configured and customised Salesforce with Apex classes, triggers, LWCs, custom objects, fields, validation rules, workflows and Process Builder flows.</li>
+              <li>Integrated Salesforce with external systems using REST APIs.</li>
+              <li>Built Screen Flows that cut manual work and improved data accuracy.</li>
+              <li>Used SOQL and SOSL for data retrieval, and built reports and dashboards for decision-making.</li>
+              <li>Managed profiles, roles and permission sets for data security and access control.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-b panel" id="p2" role="tabpanel" aria-labelledby="t2" hidden>
+          <div id="skills"></div>
+          <div class="sk">
+            <h3>Platform</h3>
+            <div class="chips"><span class="chip a">Salesforce Administration</span><span class="chip a">Salesforce Development</span><span class="chip a">Sales Cloud</span><span class="chip a">Service Cloud</span><span class="chip a">FSL</span></div>
+          </div>
+          <div class="sk">
+            <h3>Development</h3>
+            <div class="chips"><span class="chip b">Apex Classes</span><span class="chip b">Apex Triggers</span><span class="chip b">Apex Integration</span><span class="chip b">SOQL</span><span class="chip b">Lightning Web Components</span><span class="chip b">Flows</span><span class="chip b">S-Docs</span></div>
+          </div>
+          <div class="sk">
+            <h3>Data and delivery</h3>
+            <div class="chips"><span class="chip c">CI/CD</span><span class="chip c">ETL</span><span class="chip c">AWS</span></div>
+          </div>
+        </div>
+
+        <div class="card-b panel" id="p3" role="tabpanel" aria-labelledby="t3" hidden>
+          <div class="job past">
+            <h3>Bachelor of Engineering, ECE</h3>
+            <div class="meta">SVS College of Engineering, Anna University · 78%</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Certifications -->
+      <section class="card" id="certs">
+        <div class="card-h"><span class="ico" style="background:var(--ok)">✓</span>Certifications (3)</div>
+        <div class="card-b certs">
+          <div class="cert"><div class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 6 6 .9-4.500 4.300 1.100 6.300L12 16.500 6.400 19.500l1.100-6.300L3 8.900 9 8z"/></svg></div><div><b>Salesforce Certified Administrator</b><span>Salesforce</span></div></div>
+          <div class="cert"><div class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 6 6 .9-4.500 4.300 1.100 6.300L12 16.500 6.400 19.500l1.100-6.300L3 8.900 9 8z"/></svg></div><div><b>Salesforce Certified Platform Developer I</b><span>Salesforce</span></div></div>
+          <div class="cert"><div class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 6 6 .9-4.500 4.300 1.100 6.300L12 16.500 6.400 19.500l1.100-6.300L3 8.900 9 8z"/></svg></div><div><b>Salesforce Certified Platform App Builder</b><span>Salesforce</span></div></div>
+        </div>
+      </section>
+    </div>
+
+    <aside>
+      <section class="card" id="contact">
+        <div class="card-h"><span class="ico" style="background:var(--warn)">@</span>Contact</div>
+        <ul class="card-b contact">
+          <li><div><small>Email</small><a href="mailto:baluvasu18@gmail.com">baluvasu18@gmail.com</a></div></li>
+          <li><div><small>Phone</small><a href="tel:+919791303001">+91 9791303001</a></div></li>
+          <li><div><small>LinkedIn</small><a href="https://www.linkedin.com/in/balakrishnann07" target="_blank" rel="noopener">linkedin.com/in/balakrishnann07</a></div></li>
+          <li><div><small>Trailblazer</small><a href="https://trailblazer.me/id/krish7" target="_blank" rel="noopener">trailblazer.me/id/krish7</a></div></li>
+          <li><div><small>GitHub</small><a href="https://github.com/balakrishnan-sfdc" target="_blank" rel="noopener">github.com/balakrishnan-sfdc</a></div></li>
+          <li><div><small>Location</small>Coimbatore, Tamil Nadu</div></li>
+        </ul>
+      </section>
+
+      <section class="card" aria-label="Developer class">
+        <div class="code-bar">Developer.cls</div>
+        <div class="code"><span class="k">public with sharing class</span> <span class="t">Developer</span> {
+  <span class="k">public</span> <span class="t">String</span> name  = <span class="s">'Balakrishnan N'</span>;
+  <span class="k">public</span> <span class="t">String</span> role  = <span class="s">'Salesforce Developer'</span>;
+  <span class="k">public</span> <span class="t">List&lt;String&gt;</span> stack = <span class="k">new</span> <span class="t">List&lt;String&gt;</span>{
+    <span class="s">'Apex'</span>, <span class="s">'LWC'</span>, <span class="s">'Flows'</span>,
+    <span class="s">'SOQL'</span>, <span class="s">'REST'</span>
+  };
+  <span class="c">// Bulk-safe, within governor limits</span>
+  <span class="k">public</span> <span class="k">void</span> <span class="t">deliver</span>() { <span class="c">/* on time */</span> }
+}</div>
+      </section>
+    </aside>
+  </div>
+
+  <footer>© Balakrishnan N · Salesforce Developer</footer>
+</main>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('[role=tab]'));
+  function show(t){
+    tabs.forEach(function(b){
+      var on=b===t;
+      b.setAttribute('aria-selected',on);
+      b.tabIndex=on?0:-1;
+      document.getElementById(b.getAttribute('aria-controls')).hidden=!on;
+    });
+  }
+  tabs.forEach(function(b,i){
+    b.addEventListener('click',function(){show(b)});
+    b.addEventListener('keydown',function(e){
+      var n=e.key==='ArrowRight'?i+1:e.key==='ArrowLeft'?i-1:null;
+      if(n===null)return;
+      n=(n+tabs.length)%tabs.length;tabs[n].focus();show(tabs[n]);
+    });
+  });
+  document.querySelectorAll('a[href="#skills"]').forEach(function(a){
+    a.addEventListener('click',function(){show(tabs[1])});
+  });
+})();
+</script>
 </body>
 </html>
